@@ -35,9 +35,13 @@ class Sms extends  REST_Controller {
     {
 
     }
-
-    public function index_post($phone_no,$message,$from_)
+    
+    public function index_post()
     {
+        $phone_no = $this->input->post('phone_no');
+        $message = $this->input->post('message');
+        $from_ = $this->input->post('from_');
+
         if($phone_no!=null && $message != null && $from_ != null){
             $result = $this->sms_model->save($phone_no,$message,$from_);
             if($result == true){
@@ -46,21 +50,39 @@ class Sms extends  REST_Controller {
                 $this->response(array("error" => "No ha sido guardado"),400);
             }
         }
-
     }
 
-    public function index_put($id)
+
+    /* 
+       {
+        "id":1,
+          "params": {
+            "status": 1    
+           }
+       }
+    */
+    public function index_put()
     {   
-        if(! $this->put("sms") || ! $id){
+        // Esta es la forma de obtener los parametros por put pero obtiene un string por eso se lleva a una 
+        // clase standart.
+        $params = json_decode ($this->input->raw_input_stream);
+        
+        $id = $params->id;
+        $data = $params->params;
+        
+        // convertir a arreglo el StdClas para que funcione en el modelo que usa  un array
+        $array = json_decode(json_encode($data), true);
+        
+        if(! $id  || ! $data) { 
             $this->response(NULL,400);
         }
 
-        $update = $this->sms_model->update($id, $this->put("sms"));
+        $update = $this->sms_model->update($id, $array);
 
-        if(!is_null($update)){
+        if($update){
             $this->response(array("success" => true), 200);
         }else{
-            $this->response(array("error" => "Ha ocurrido un error"), 400);
+            $this->response(array("error" => "No hay cambios"), 400);
         }    
     }
 

@@ -37,13 +37,13 @@ class Sms_model extends CI_Model {
         return NULL;
     }
 
-    public function update($id,$sms)
+    public function update($id,$data)
     {
         date_default_timezone_set('America/Havana'); # add your city to set local time zone
         $now = date('Y-m-d H:i:s');
         
         $this->db->set(
-            $this->_setSms($sms)
+            $data
         )
         ->where("id" , $id)
         ->update('sms');
@@ -52,12 +52,12 @@ class Sms_model extends CI_Model {
         {
             return true;
         }
-        return NULL;
+        return false;
     }
 
     public function _setSms($sms){
         date_default_timezone_set('America/Havana'); # add your city to set local time zone
-        $now = date('Y-m-d H:i:s');
+        $now = date('Y-m-d H:i:s'); // Pass this to default value on row
         return array(
             "phone_no" => $sms['phone_no'],
             "message" => $sms['message'],
