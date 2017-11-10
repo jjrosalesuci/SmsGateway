@@ -13,8 +13,11 @@ class Sms extends  REST_Controller {
          $this->load->helper('date');
     }
     
-    public function index_get($start,$limit)
+    public function index_get()
     {
+        $start = $this->input->get('start');
+        $limit = $this->input->get('limit', TRUE);
+
         if(is_numeric ($start) && is_numeric ($limit)){
             $sms = $this->sms_model->get($start,$limit);
         }else{
