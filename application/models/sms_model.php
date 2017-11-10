@@ -11,7 +11,7 @@ class Sms_model extends CI_Model {
 
     public function get($start,$limit)
     {
-        $query = $this->db->select("*")->from('sms')->limit($limit,$start)->where('status', 0)->get();
+        $query = $this->db->select("*")->from('sms')->order_by('created_at','DESC')->limit($limit,$start)->where('status', 0)->get();
         if($query->num_rows() > 0){
             return $query->result_array();
         }
@@ -53,17 +53,5 @@ class Sms_model extends CI_Model {
             return true;
         }
         return false;
-    }
-
-    public function _setSms($sms){
-        date_default_timezone_set('America/Havana'); # add your city to set local time zone
-        $now = date('Y-m-d H:i:s'); // Pass this to default value on row
-        return array(
-            "phone_no" => $sms['phone_no'],
-            "message" => $sms['message'],
-            "from_" => $sms['phone_no'],
-            "status" => $sms['status'],
-            "update_at" => $now
-        );
     }
 }
