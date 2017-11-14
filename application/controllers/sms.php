@@ -10,6 +10,7 @@ class Sms extends  REST_Controller {
     {
          parent::__construct();
          $this->load->model('sms_model');
+         $this->load->model('users_model');
          $this->load->helper('date');
     }
     
@@ -41,14 +42,34 @@ class Sms extends  REST_Controller {
         $phone_no = $this->input->post('phone_no');
         $message = $this->input->post('message');
         $from_ = $this->input->post('from_');
+        $user_id = $this->input->post('user_id');
 
-        if($phone_no!=null && $message != null && $from_ != null){
-            $result = $this->sms_model->save($phone_no,$message,$from_);
-            if($result == true){
-                $this->response(array("success" => true));
+        if($phone_no!=null && $message != null && $from_ != null && $user_id != null){
+            //Chequeo de costo de mensaje
+            $cost = $this->sms_model->getCost($phone_no, $message);
+
+            //Chequeo de credito
+            if($cost <= $this->users_model->getCredit($user_id)){
+                //Si el credito es suficiente se le descuenta y se procesa el mensaje
+                $this->users_model->discountCredit($user_id, $cost);
+                $result = $this->sms_model->save($phone_no,$message,$from_,$status = 0,$user_id);
+                if($result == true){
+                    $this->response(array("success" => true));
+                }else{
+                    $this->response(array("error" => "No ha sido guardado"),400);
+                }
             }else{
-                $this->response(array("error" => "No ha sido guardado"),400);
+                //Si no es suficiente el credito el mensaje se pone en estado -1
+                $result = $this->sms_model->save($phone_no,$message,$from_,$status = -1,$user_id);
+                if($result == true){
+                    $this->response(array("success" => true));
+                }else{
+                    $this->response(array("error" => "No ha sido guardado"),400);
+                }
             }
+        }
+        else{
+            $this->response(array("error" => "Faltan parámetros"), 400);
         }
     }
 
@@ -66,10 +87,10 @@ class Sms extends  REST_Controller {
         // Esta es la forma de obtener los parametros por put pero obtiene un string por eso se lleva a una 
         // clase standart.
         $params = json_decode ($this->input->raw_input_stream);
-        
+
         $id = $params->id;
         $data = $params->params;
-        
+
         // convertir a arreglo el StdClas para que funcione en el modelo que usa  un array
         $array = json_decode(json_encode($data), true);
         
@@ -90,4 +111,5 @@ class Sms extends  REST_Controller {
     {
 
     }
+    
 }

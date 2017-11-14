@@ -18,7 +18,7 @@ class Sms_model extends CI_Model {
         return NULL;
     }
 
-    public function save($phone_no,$message,$from_)
+    public function save($phone_no,$message,$from_,$status,$user_id)
     {
         date_default_timezone_set('America/Havana'); # add your city to set local time zone
         $now = date('Y-m-d H:i:s');
@@ -26,8 +26,9 @@ class Sms_model extends CI_Model {
         $this->db->set('phone_no', $phone_no);
         $this->db->set('message', $message);
         $this->db->set('from_', $from_);
-        $this->db->set('status', 0);
+        $this->db->set('status', $status);
         $this->db->set('created_at', $now);
+        $this->db->set('id_user', $user_id);
         $this->db->insert('sms');
 
         if($this->db->affected_rows() === 1)
@@ -53,5 +54,9 @@ class Sms_model extends CI_Model {
             return true;
         }
         return false;
+    }
+
+    public function getCost($phone_no, $message){
+        return 1;
     }
 }

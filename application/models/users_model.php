@@ -66,4 +66,29 @@ class Users_model extends CI_Model {
         }
         return NULL;
     }
+
+    public function getCredit($id){
+
+        $query = $this->db->select("credit")->from('users')->where('id', $id)->get();
+        $credit = $query->row('credit');
+
+        if($query->num_rows() > 0){
+            return $credit;
+        }
+        return NULL;
+    }
+
+    public function discountCredit($id, $cost)
+    {
+        $credit = $this->getCredit($id) - $cost; 
+        $this->db->set('credit', $credit , FALSE);
+        $this->db->where('id', $id);
+        $this->db->update('users');
+
+        if($this->db->affected_rows() === 1)
+        {
+            return true;
+        }
+        return NULL;
+    }
 }
