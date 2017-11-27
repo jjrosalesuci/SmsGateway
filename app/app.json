@@ -1,10 +1,8 @@
 {
-    "name": "MyApp",
-    "namespace": "MyApp",
+    "name": "smsfront",
+    "namespace": "smsfront",
     "version": "1.0.0.0",
     "framework": "ext",
-    "toolkit": "modern",
-    "theme": "theme-material",
 
     /**
      * The list of required packages (with optional versions; default is "latest").
@@ -31,7 +29,8 @@
      * application resides (the same folder in which this file is located).
      */
     "classpath": [
-        "app"
+        "app",
+        "${toolkit.name}/src"
     ],
 
     /**
@@ -42,7 +41,8 @@
      * in the "override" property is also included.
      */
     "overrides": [
-        "overrides"
+        "overrides",
+        "${toolkit.name}/overrides"
     ],
 
     /**
@@ -64,13 +64,13 @@
     "sass": {
         /**
          * The root namespace to use when mapping *.scss files to classes in the
-         * sass/src and sass/var directories. For example, "MyApp.view.Foo" would
-         * map to "sass/src/view/Foo.scss". If we changed this to "MyApp.view" then
+         * sass/src and sass/var directories. For example, "smsfront.view.Foo" would
+         * map to "sass/src/view/Foo.scss". If we changed this to "smsfront.view" then
          * it would map to "sass/src/Foo.scss". To style classes outside the app's
          * root namespace, change this to "". Doing so would change the mapping of
-         * "MyApp.view.Foo" to "sass/src/MyApp/view/Foo.scss".
+         * "smsfront.view.Foo" to "sass/src/smsfront/view/Foo.scss".
          */
-        "namespace": "MyApp",
+        "namespace": "smsfront",
 
         /**
          * Generated sass source settings
@@ -86,11 +86,6 @@
          *      }
          *
          */
-
-        "generated": {
-            "var": "sass/save.scss",
-            "src": "sass/save"
-        },
 
         /**
          * Comma-separated list of files or folders containing extra Sass. These
@@ -112,7 +107,8 @@
          *      +-----------------+
          */
         "etc": [
-            "sass/etc/all.scss"
+            "sass/etc/all.scss",
+            "${toolkit.name}/sass/etc/all.scss"
         ],
 
         /**
@@ -137,7 +133,9 @@
          */
         "var": [
             "sass/var/all.scss",
-            "sass/var"
+            "sass/var",
+            "${toolkit.name}/sass/var/all.scss",
+            "${toolkit.name}/sass/var"
         ],
 
         /**
@@ -157,7 +155,8 @@
          *      +-----------------+
          */
         "src": [
-            "sass/src"
+            "sass/src",
+            "${toolkit.name}/sass/src"
         ]
     },
 
@@ -204,13 +203,34 @@
      */
     "js": [
         {
-            "path": "${framework.dir}/build/ext-modern-all-debug.js"
-        },
-        {
             "path": "app.js",
             "bundle": true
         }
     ],
+
+    /**
+     * Settings specific to classic toolkit builds.
+     */
+    "classic": {
+        "js": [
+            // Remove this entry to individually load sources from the framework.
+            {
+                "path": "${framework.dir}/build/ext-all-rtl-debug.js"
+            }
+        ]
+    },
+
+    /**
+     * Settings specific to modern toolkit builds.
+     */
+    "modern": {
+        "js": [
+            // Remove this entry to individually load sources from the framework.
+            {
+                "path": "${framework.dir}/build/ext-modern-all-debug.js"
+            }
+        ]
+    },
 
     /**
      * List of all CSS assets in the right inclusion order.
@@ -335,6 +355,8 @@
     "bootstrap": {
         "base": "${app.dir}",
 
+        "manifest": "${build.id}.json",
+
         "microloader": "bootstrap.js",
         "css": "bootstrap.css"
     },
@@ -387,8 +409,15 @@
 
     "output": {
         "base": "${workspace.build.dir}/${build.environment}/${app.name}",
+        "page": "index.html",
+        "manifest": "${build.id}.json",
+        "js": "${build.id}/app.js",
         "appCache": {
             "enable": false
+        },
+        "resources": {
+            "path": "${build.id}/resources",
+            "shared": "resources"
         }
     },
 
@@ -410,7 +439,7 @@
 
     "cache": {
         "enable": false,
-        "deltas": true
+        "deltas": "${build.id}/deltas"
     },
 
     /**
@@ -444,6 +473,12 @@
         {
             "path": "resources",
             "output": "shared"
+        },
+        {
+            "path": "${toolkit.name}/resources"
+        },
+        {
+            "path": "${build.id}/resources"
         }
     ],
 
@@ -453,9 +488,7 @@
      * deltas between updates.
      */
 
-    "archivePath": "archive",
-
-    "slicer": null,
+    "archivePath": "archive/${build.id}",
 
     /**
      * Build Profiles. This object's properties are each a "build profile". You can
@@ -464,7 +497,43 @@
      * selecting the desired build profile by setting "Ext.manifest" to one of these
      * names.
      *
+     *     "builds": {
+     *         "classic": {
+     *             "toolkit": "classic",
+     *             "theme": "theme-neptune"
+     *         },
+     *
+     *         "modern": {
+     *             "toolkit": "modern",
+     *             "theme": "theme-neptune"
+     *         }
+     *     }
+     *
      */
+
+    "builds": {
+        "classic": {
+            "toolkit": "classic",
+            "theme": "theme-triton",
+            "sass": {
+                "generated": {
+                    "var": "classic/sass/save.scss",
+                    "src": "classic/sass/save"
+                }
+            }
+        },
+
+        "modern": {
+            "toolkit": "modern",
+            "theme": "theme-material",
+            "sass": {
+                "generated": {
+                    "var": "modern/sass/save.scss",
+                    "src": "modern/sass/save"
+                }
+            }
+        }
+    },
 
     /**
      * File / directory name patttern to ignore when copying to the builds. Must be a
@@ -478,5 +547,5 @@
      * Uniquely generated id for this application, used as prefix for localStorage keys.
      * Normally you should never change this value.
      */
-    "id": "51e2143f-6df9-40b9-8834-3764ce4cc8a4"
+    "id": "97cecc94-2bc2-460d-b0fb-246fb687a7ad"
 }
