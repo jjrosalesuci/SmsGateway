@@ -8,13 +8,8 @@ Ext.define('App.security.Firewall', {
         var deferred = new Ext.Deferred();
 
         Ext.Ajax.request({
-            url: 'http://localhost/SmsGateway/index.php/login/',
+            url: '../index.php/login',
             method: 'POST',
-            headers: {
-                //'Access-Control-Allow-Origin': '*'
-                //'Access-Control-Allow-Headers': '*'
-                //'Access-Control-Allow-Credentials': true
-            },
             jsonData: {
                 'username': username,
                 'password': password

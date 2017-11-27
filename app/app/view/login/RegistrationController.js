@@ -17,7 +17,7 @@ Ext.define('smsfront.view.login.RegistrationController', {
 
         form.submit({
             clientValidation: true,
-            url: 'http://localhost/SmsGateway/index.php/users/',
+            url: '../index.php/users',
             success: function(form, action) {
                 Ext.Msg.show({
                     title: 'Success',
