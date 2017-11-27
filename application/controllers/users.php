@@ -27,7 +27,7 @@ class Users extends  REST_Controller {
         if(!is_null($users)){
             $this->response(array("success" => true,"list" => $users), 200);
         }else{
-            $this->response(array("error" => "No hay sms por procesar"), 200);
+            $this->response(array("error" => "No hay sms por procesar"), 400);
         }    
     }
 
@@ -39,7 +39,7 @@ class Users extends  REST_Controller {
         $name = $this->input->post('name');
         $credit = $this->input->post('credit');
 
-        if($user!=null && $password != null && $email != null && $name != null && $credit != null){
+        if($user!=null && $password != null && $email != null && $name != null /*&& $credit != null*/){
             $result = $this->users_model->save($user,$password,$email,$name,$credit);
             if($result == true){
                 $this->response(array("success" => true));

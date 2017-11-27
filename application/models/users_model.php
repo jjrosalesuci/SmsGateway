@@ -23,6 +23,10 @@ class Users_model extends CI_Model {
         date_default_timezone_set('America/Havana'); # add your city to set local time zone
         $now = date('Y-m-d H:i:s');
 
+        if (is_null($credit)) {
+            $credit = 0;
+        }
+
         $this->db->set('user', $user);
         $this->db->set('password', $password);
         $this->db->set('email', $email);
@@ -88,6 +92,21 @@ class Users_model extends CI_Model {
         if($this->db->affected_rows() === 1)
         {
             return true;
+        }
+        return NULL;
+    }
+
+    public function validatePass($user,$pass){
+
+        $query = $this->db->select('password, active')->from('users')->where('user', $user)->get();
+        $password = $query->row('password');
+        $is_active = $query->row('active');
+
+        if($query->num_rows() > 0){
+            if($password === $pass && $is_active != 0){
+                return true;
+            }
+            return NULL;
         }
         return NULL;
     }
