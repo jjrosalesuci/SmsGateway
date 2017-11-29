@@ -1,1 +1,1 @@
-cache_path = 'C:\Users\alberto\smsfront/build/.sass-cache'
+cache_path = 'D:\Xampp\htdocs\SmsGateway\app/build/.sass-cache'

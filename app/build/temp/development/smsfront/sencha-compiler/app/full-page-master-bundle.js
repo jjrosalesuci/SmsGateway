@@ -1,2 +1,2 @@
 // @tag full-page
-// @require C:\Users\alberto\smsfront\app.js
+// @require D:\Xampp\htdocs\SmsGateway\app\app.js

@@ -1,5 +1,5 @@
 $app-name:  dynamic( 'smsfront' );
-$image-search-path: 'C:/Users/alberto/smsfront/build/development/smsfront/classic/resources';
+$image-search-path: 'D:/Xampp/htdocs/SmsGateway/app/build/development/smsfront/classic/resources';
 $theme-name:  dynamic( 'theme-triton' );
 $include-app-security-firewall: dynamic(true);;
 $include-app-security-tokenstorage: dynamic(true);;

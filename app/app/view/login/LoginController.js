@@ -26,13 +26,4 @@ Ext.define('smsfront.view.login.LoginController', {
             xtype: 'registration'
         });
     }
-
-    /*onRegisterclose:function(){
-        this.getView().destroy();
-
-        Ext.create({
-            xtype: 'login'
-        });
-    }*/
-
 });

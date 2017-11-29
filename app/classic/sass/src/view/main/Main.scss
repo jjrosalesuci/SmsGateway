@@ -1,7 +1,7 @@
 /**
  * Generates a set of style rules for the "navigation" tab UI.
  */
-@include extjs-tab-panel-ui(
+/*@include extjs-tab-panel-ui(
     $ui: 'navigation',
     $ui-tab-background-color: transparent,
     $ui-tab-background-color-over: #505050,
@@ -40,7 +40,7 @@
 /**
  * Generates a set of style rules for the "navigation" panel UI.
  */
-@include extjs-panel-ui(
+/*@include extjs-panel-ui(
     $ui: 'navigation',
     $ui-header-color: #fff,
     $ui-header-glyph-color: #fff,
@@ -81,3 +81,4 @@
     top: 30px;
     right: -24px;
 }
+
