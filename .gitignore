@@ -1,2 +1,3 @@
 .DS_Store
 application/config/database.php
+spa/node_modules

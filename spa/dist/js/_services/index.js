@@ -1,0 +1,1 @@
+System.register(["./alert.service","./authentication.service","./user.service"],function(e,t){"use strict";function n(t){var n={};for(var i in t)"default"!==i&&(n[i]=t[i]);e(n)}t&&t.id;return{setters:[function(e){n(e)},function(e){n(e)},function(e){n(e)}],execute:function(){}}});

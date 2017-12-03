@@ -1,38 +1,38 @@
 <html>
 
-	<head>
-		<title>Sms Gateway</title>
-		<base href="/">
-		<!-- CSS -->
-		<link href="dist/css/main.css" rel="stylesheet" type="text/css"/>
-		<link href="../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-		<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+<head>
+	<title>Sms Gateway</title>
+	<base href="/">
+	<!-- CSS -->
+	<link href="dist/css/main.css" rel="stylesheet" type="text/css" />
+	<link href="dist/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<link href="dist/css/font-awesome.css" rel="stylesheet">
 
-		<!-- Script -->
-		<script src="node_modules/angular2/bundles/angular2-polyfills.js"></script>
-		<script src="node_modules/systemjs/dist/system.src.js"></script>
-		<script src="node_modules/rxjs/bundles/Rx.js"></script>
-		<script src="node_modules/angular2/bundles/angular2.dev.js"></script>
-		<script src="node_modules/angular2/bundles/router.dev.js"></script>
-		<script src="../node_modules/jquery/dist/jquery.min.js"></script>
-		<script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+	<!-- Script -->
+	<script src="node_modules/angular2/bundles/angular2-polyfills.js"></script>
+	<script src="node_modules/systemjs/dist/system.src.js"></script>
+	<script src="node_modules/rxjs/bundles/Rx.js"></script>
+	<script src="node_modules/angular2/bundles/angular2.dev.js"></script>
+	<script src="node_modules/angular2/bundles/router.dev.js"></script>
+	<script src="node_modules/angular2/bundles/http.dev.js"></script>
+	<script src="dist/jquery.min.js"></script>
 
-		<script>
-			System.config({
-				packages: {        
-					'dist/js': {
-						main                : "main",
-						defaultJSExtensions : true
-					}
+	<script>
+		System.config({
+			packages: {
+				'dist/js': {
+					main: "main",
+					defaultJSExtensions: true
 				}
-			});
-			System.import('dist/js').then(null, console.error.bind(console));
-		</script>
+			}
+		});
+		System.import('dist/js').then(null, console.error.bind(console));
+	</script>
 
-	</head>
+</head>
 
-	<body>
-		<my-app>Loading...</my-app>
-	</body>
+<body>
+	<my-app>Loading...</my-app>
+</body>
 
 </html>
