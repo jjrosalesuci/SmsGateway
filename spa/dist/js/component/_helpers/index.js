@@ -1,1 +1,0 @@
-System.register(["./fake-backend"],function(e,t){"use strict";function n(t){var n={};for(var r in t)"default"!==r&&(n[r]=t[r]);e(n)}t&&t.id;return{setters:[function(e){n(e)}],execute:function(){}}});

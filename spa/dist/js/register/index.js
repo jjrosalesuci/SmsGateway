@@ -1,1 +1,0 @@
-System.register(["./register.component"],function(t,e){"use strict";function n(e){var n={};for(var r in e)"default"!==r&&(n[r]=e[r]);t(n)}e&&e.id;return{setters:[function(t){n(t)}],execute:function(){}}});
