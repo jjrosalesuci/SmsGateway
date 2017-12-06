@@ -1,6 +1,6 @@
 ﻿<div class="container">
     <div class="omb_login">
-        <h3 class="omb_authTitle">Register
+        <h3 class="omb_authTitle">Regístrate gratis
         </h3>
         <div class="row omb_row-sm-offset-3">
             <div class="col-xs-12 col-sm-6">
@@ -9,7 +9,7 @@
                         <span class="input-group-addon">
                             <i class="fa fa-user"></i>
                         </span>
-                        <input type="text" class="form-control" placeholder="username" [(ngModel)]="model.username">
+                        <input type="text" class="form-control" placeholder="Usuario" [(ngModel)]="model.username" required autofocus>
                     </div>
                     <span class="help-block"></span>
 
@@ -17,7 +17,7 @@
                         <span class="input-group-addon">
                             <i class="fa fa-lock"></i>
                         </span>
-                        <input type="password" class="form-control" placeholder="Password" [(ngModel)]="model.password">
+                        <input type="password" class="form-control" placeholder="Contraseña" [(ngModel)]="model.password" required>
                     </div>
                     <span class="help-block"></span>
 
@@ -25,7 +25,7 @@
                         <span class="input-group-addon">
                             <i class="fa fa-send"></i>
                         </span>
-                        <input type="email" class="form-control" placeholder="email" [(ngModel)]="model.email">
+                        <input type="email" class="form-control" placeholder="Correo" [(ngModel)]="model.email" required>
                     </div>
                     <span class="help-block"></span>
 
@@ -33,13 +33,22 @@
                         <span class="input-group-addon">
                             <i class="fa fa-info"></i>
                         </span>
-                        <input type="text" class="form-control" placeholder="name" [(ngModel)]="model.name">
+                        <input type="text" class="form-control" placeholder="Nombre Completo" [(ngModel)]="model.name" required>
                     </div>
                     <span class="help-block"></span>
                     <!-- <span class="help-block">Password error</span> -->
                     <div class="form-group">
-                        <button class="btn btn-primary" type="submit">Register</button>
-                        <a [routerLink]="['Login']" class="btn btn-link">Cancel</a>
+                        <button class="btn btn-primary btn-lg btn-block" type="submit">Aceptar</button>
+                        
+                        <p>Al hacer click en este botón usted está de acuerdo con nuestras <a href="#">políticas legales</a></p>
+                        <div class="row omb_row-sm-offset-3 omb_loginOr">
+                            <div class="col-xs-12 col-sm-6">
+                              <hr class="omb_hrOr">
+                              <span class="omb_spanOr">o</span>
+                            </div>
+                          </div>
+                        <p>Ya tienes una cuenta?</p>
+                        <a [routerLink]="['Login']" class="btn btn-danger btn-large btn-block">Cancelar</a>
                     </div>
                     
                 </form>

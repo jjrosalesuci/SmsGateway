@@ -1,24 +1,25 @@
 <?php
 
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Sms_model extends CI_Model {
+class Sms_model extends CI_Model
+{
 
     public function __construct()
     {
-         parent::__construct();
+        parent::__construct();
     }
 
-    public function get($start,$limit)
+    public function get($start, $limit)
     {
-        $query = $this->db->select("*")->from('sms')->order_by('created_at','DESC')->limit($limit,$start)->where('status', 0)->get();
-        if($query->num_rows() > 0){
+        $query = $this->db->select("*")->from('sms')->order_by('created_at', 'DESC')->limit($limit, $start)->where('status', 0)->get();
+        if ($query->num_rows() > 0) {
             return $query->result_array();
         }
-        return NULL;
+        return null;
     }
 
-    public function save($phone_no,$message,$from_,$status,$user_id)
+    public function save($phone_no, $message, $from_, $status, $user_id)
     {
         date_default_timezone_set('America/Havana'); # add your city to set local time zone
         $now = date('Y-m-d H:i:s');
@@ -31,32 +32,31 @@ class Sms_model extends CI_Model {
         $this->db->set('id_user', $user_id);
         $this->db->insert('sms');
 
-        if($this->db->affected_rows() === 1)
-        {
-            return true;
+        if ($this->db->affected_rows() === 1) {
+            return $this->db->insert_id();
         }
-        return NULL;
+        return null;
     }
 
-    public function update($id,$data)
+    public function update($id, $data)
     {
         date_default_timezone_set('America/Havana'); # add your city to set local time zone
         $now = date('Y-m-d H:i:s');
-        
+
         $this->db->set(
             $data
         )
-        ->where("id" , $id)
-        ->update('sms');
+            ->where("id", $id)
+            ->update('sms');
 
-        if($this->db->affected_rows() === 1)
-        {
+        if ($this->db->affected_rows() === 1) {
             return true;
         }
         return false;
     }
 
-    public function getCost($phone_no, $message){
-        return 1;
+    public function getCost($phone_no, $message)
+    {
+        return 1.5;
     }
 }
