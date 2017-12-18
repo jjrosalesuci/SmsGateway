@@ -37,6 +37,7 @@ gulp.task('copy:libs', ['clean-lib'], function () {
 		'node_modules/angular2/bundles/angular2.dev.js',
 		'node_modules/angular2/bundles/router.dev.js',
 		'node_modules/angular2/bundles/http.dev.js',
+		'node_modules/angular2/forms/bundles/forms.umd.js',
 		'node_modules/jquery/dist/jquery.min.js'
 	])
 		.pipe(gulp.dest('./dist/lib'))

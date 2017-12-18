@@ -1,7 +1,8 @@
 // Libraries
-import {Component}                      from 'angular2/core';
-import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
-import {AuthCheck} from '../../authcheck';
+import { Component }                      from 'angular2/core';
+import { RouteConfig, ROUTER_DIRECTIVES } from 'angular2/router';
+import { ReactiveFormsModule } from 'angular2/forms';
+import { AuthCheck } from '../../authcheck';
 
 // Custom Components
 import {NavigationComponent} from '../navigation/navigation';
@@ -11,10 +12,14 @@ import {LoginPageComponent}  from '../page-login/page-login';
 import {RegisterPageComponent}  from '../page-register/page-register';
 import {AdminPageComponent}  from '../page-admin/page-admin';
 
+
 @Component({
     selector    : 'my-app',
     templateUrl : 'dist/component/app/app.html',
-	directives  : [NavigationComponent, ROUTER_DIRECTIVES]
+	directives  : [	NavigationComponent,
+					ROUTER_DIRECTIVES,
+					ReactiveFormsModule
+					]
 })
 @RouteConfig([
 	{   

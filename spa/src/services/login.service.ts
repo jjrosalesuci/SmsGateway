@@ -22,6 +22,8 @@ export class loginService {
           window.localStorage.setItem('auth_key', data.json().token);
           this.isLoggedin = true;
           resolve(this.isLoggedin)
+        }else{
+          resolve(data.json())
         }
       })
     })
