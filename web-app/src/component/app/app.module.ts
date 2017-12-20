@@ -11,6 +11,7 @@ import { LoginPageComponent } from "../page-login/page-login";
 import { RegisterPageComponent } from "../page-register/page-register";
 import { NavigationComponent } from "../navigation/navigation";
 import { NotFoundComponent } from "../not-found/not-found.component";
+import { CollapseDirective } from 'ngx-bootstrap';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { NotFoundComponent } from "../not-found/not-found.component";
                     LoginPageComponent,
                     RegisterPageComponent,
                     NavigationComponent,
-                    NotFoundComponent
+                    NotFoundComponent,
+                    CollapseDirective
     ],
     bootstrap: [ AppComponent ]
 })
