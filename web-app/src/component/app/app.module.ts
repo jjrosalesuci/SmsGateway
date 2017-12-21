@@ -5,7 +5,7 @@ import { HttpModule } from '@angular/http';
 import { appRouting } from "./app.routing";
 import { AppComponent } from "./app.component";
 import { AboutPageComponent } from "../page-about/page-about";
-import { AdminPageComponent } from "../page-admin/page-admin";
+import { AdminModule } from "../page-admin/page-admin.module";
 import { HomePageComponent } from "../page-home/page-home";
 import { LoginPageComponent } from "../page-login/page-login";
 import { RegisterPageComponent } from "../page-register/page-register";
@@ -14,16 +14,17 @@ import { NotFoundComponent } from "../not-found/not-found.component";
 import { CollapseDirective } from 'ngx-bootstrap';
 
 
+
 @NgModule({
     imports: [  BrowserModule,
                 appRouting,
                 ReactiveFormsModule,
-                HttpModule
+                HttpModule,
+                AdminModule
     ],
     declarations: [ 
                     AppComponent, 
                     AboutPageComponent,
-                    AdminPageComponent,
                     HomePageComponent,
                     LoginPageComponent,
                     RegisterPageComponent,

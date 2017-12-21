@@ -1,7 +1,6 @@
 import { ModuleWithProviders } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { AboutPageComponent } from "../page-about/page-about";
-import { AdminPageComponent } from "../page-admin/page-admin";
 import { HomePageComponent } from "../page-home/page-home";
 import { LoginPageComponent } from "../page-login/page-login";
 import { RegisterPageComponent } from "../page-register/page-register";
@@ -23,10 +22,6 @@ const appRoute: Routes = [
 	{ 
 		path      : 'register',
 		component : RegisterPageComponent
-	},
-	{ 
-		path      : 'admin',
-		component : AdminPageComponent
 	},
 	{ 
 		path      : 'not-found',
