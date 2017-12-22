@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { AdminPageComponent } from './page-admin';
 import { SmsComponent } from './sms/page-sms.component';
 import { adminRouting } from '../page-admin/page-admin.routing'
+import { SmsDetailsComponent } from '../page-admin/sms/page-smsdetails.component';
 
 @NgModule({
     imports:[
@@ -10,7 +11,8 @@ import { adminRouting } from '../page-admin/page-admin.routing'
     ],
     declarations:[
         AdminPageComponent,
-        SmsComponent
+        SmsComponent,
+        SmsDetailsComponent
     ]
 })
 
