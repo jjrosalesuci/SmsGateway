@@ -1,27 +1,93 @@
 <ol class="breadcrumb">
     <li class="breadcrumb-item">
-        <a href="#">Inicio</a>
+        <a routerLink="/admin">Inicio</a>
     </li>
     <li class="breadcrumb-item active">Consola de Administración de: </li>
     <li style="margin-left:5px">
         <a class="breadcrum-item" href="admin">albert840702@gmail.com</a>
     </li>
 </ol>
-<div class="card border-secondary mb-3" style="max-width: 35rem;">
-    <div class="card-header bg-transparent border-secondary">
-        <span class="fa fa-fw fa-info-circle"></span>
-        Información del Proyecto</div>
-    <div class="card-body text-secondary">
-        <p class="card-text">ACCOUNT SID: kamsmdfkdmKKASDE2343RFF3d3e33e33ddddfg</p><br>
-        <p class="card-text">AUTH TOKEN: *************************************</p><br>
-        <p class="card-text">BALANCE: <span class="card-text text-success">+ $15.50</span></p><br>
-        
-
+<div class="row">
+    <div class="col-xl-6 col-sm-6 mb-3">
+        <div class="card text-white bg-dark mb-3">
+            <div class="card-header bg-transparent ">
+                <span class="fa fa-fw fa-info-circle"></span>
+                Información del Proyecto</div>
+            <div class="card-body text-white">
+                <p class="card-text">ACCOUNT SID: kamsmdfkdmKKASDE2343RFF3d3e33e33ddddfg</p>
+                <p class="card-text">AUTH TOKEN:
+                    <span class="fa fa-fw fa-eye"></span> *************************************</p>
+                <p class="card-text">BALANCE:
+                    <span class="card-text text-warning">+ $15.50</span>
+                </p>
+            </div>
+            <div class="card-footer bg-transparent">
+                <span class="fa fa-fw fa-cog"></span>
+                <a href="" style="color:white;text-decoration:underline">Configuración</a>
+                <span class="fa fa-fw fa-dollar" style="margin-left:20px"></span>
+                <a href="" style="color:white;text-decoration:underline">Detalles de pago</a>
+            </div>
+        </div>
     </div>
-    <div class="card-footer bg-transparent border-secondary">
-        <span class="fa fa-fw fa-cog"></span>
-        <a>Configuración</a>
-        <span class="fa fa-fw fa-dollar" style="margin-left:20px"></span>
-        <a>Detalles de pago</a>
+    <div class="col-xl-6 col-sm-6 mb-3">
+        <div class="card text-white bg-danger mb-3">
+            <div class="card-header bg-transparent ">
+                <span class="fa fa-fw fa-bug"></span>
+                Errores y Advertencias</div>
+            <div class="card-body bg-transparent">
+                <p>Usted no tiene errores ni advertencias.</p>
+            </div>
+            <div class="card-footer bg-transparent">
+                <a class="" style="color:white;text-decoration:underline" href="">Ver el depurador de errores</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-4 col-sm-4 mb-3">
+        <div class="card text-white bg-info mb-3">
+            <div class="card-header bg-transparent ">
+                <span class="fa fa-fw fa-hashtag"></span>
+                Números de Teléfonos</div>
+            <div class="card-body bg-white text-white">
+                <a href="" style="text-decoration:underline">
+                    Gestionar Números
+                </a>
+                <hr>
+                <a href="" style="text-decoration:underline">
+                    Comprar Número
+                </a>
+                <hr>
+                <a href="" style="text-decoration:underline">
+                    Verificar ID de LLamantes
+                </a>
+                <hr>
+                <a href="" style="text-decoration:underline">
+                    LLamadas Puertos
+                </a>
+                <hr>
+                <a href="" style="text-decoration:underline">
+                    Direcciones
+                </a>
+            </div>
+            <div class="card-footer bg-transparent">
+                <span class="fa fa-fw fa-hashtag"></span>
+                <a href="" style="color:white;text-decoration:underline">Números de Teléfonos</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-8 col-sm-8 mb-4">
+        <div class="card text-white bg-primary mb-3">
+            <div class="card-header bg-transparent ">
+                <span class="fa fa-fw fa-weixin"></span>
+                SMS Programables</div>
+            <div class="card-body bg-transparent">
+                <img class="rounded" src="../assets/chart.png">
+            </div>
+            <div class="card-footer bg-transparent">
+                <span class="fa fa-fw fa-weixin"></span>
+                <a routerLink="/admin/sms" style="color:white;text-decoration:underline">SMS Programables</a>
+                <span class="fa fa-fw fa-history" style="margin-left:20px"></span>
+                <a href="" style="color:white;text-decoration:underline">Registros</a>
+            </div>
+        </div>
     </div>
 </div>
