@@ -6,9 +6,7 @@ import { SmsComponent } from './sms/page-sms.component';
 import { SmsDetailsComponent } from './sms/page-smsdetails.component';
 import { SmsHomeComponent } from './sms/sms.home.component';
 import { PaymentsComponent } from '../page-admin/payments/payments.component';
-
-
-
+import { AuthGuard } from '../../services/auth-guard.service';
 
 const adminRoutes: Routes = [
     {
@@ -17,6 +15,7 @@ const adminRoutes: Routes = [
             {
                 path: '',
                 component: AdminPageComponent,
+                canActivate: [AuthGuard],
                 children:[
                     {
                         path:'',

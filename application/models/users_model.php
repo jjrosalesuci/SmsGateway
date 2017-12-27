@@ -19,7 +19,7 @@ class Users_model extends CI_Model
         return null;
     }
 
-    public function save($user, $password, $email, $name, $credit)
+    public function save($user, $password, $email, $name, $credit, $auth_token)
     {
         date_default_timezone_set('America/Havana'); # add your city to set local time zone
         $now = date('Y-m-d H:i:s');
@@ -29,6 +29,7 @@ class Users_model extends CI_Model
         }
 
         $this->db->set('user', $user);
+        $this->db->set('auth_token', $auth_token);
         $this->db->set('password', $password);
         $this->db->set('email', $email);
         $this->db->set('name', $name);

@@ -12,6 +12,9 @@ import { RegisterPageComponent } from "../page-register/page-register";
 import { NavigationComponent } from "../navigation/navigation";
 import { NotFoundComponent } from "../not-found/not-found.component";
 import { CollapseDirective } from 'ngx-bootstrap';
+import { AuthGuard } from '../../services/auth-guard.service';
+import { loginService } from '../../services/login.service';
+import { NotPermission } from '../not-found/not-permission.component';
 
 
 
@@ -30,9 +33,11 @@ import { CollapseDirective } from 'ngx-bootstrap';
                     RegisterPageComponent,
                     NavigationComponent,
                     NotFoundComponent,
-                    CollapseDirective
+                    CollapseDirective,
+                    NotPermission
     ],
-    bootstrap: [ AppComponent ]
+    bootstrap: [ AppComponent ],
+    providers: [ AuthGuard, loginService ]
 })
 
 export class AppModule{}

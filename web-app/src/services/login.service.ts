@@ -28,4 +28,13 @@ export class loginService {
       })
     })
   }
+
+  isLogged():boolean{
+    let token = window.localStorage.getItem('auth_key');
+
+    if(token){
+      return true;
+    }
+    return false;
+  }
 }

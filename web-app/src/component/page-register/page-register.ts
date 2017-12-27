@@ -32,7 +32,7 @@ export class RegisterPageComponent {
             ]],
             password: ['', [
                 Validators.required,
-                Validators.minLength(8),
+                Validators.minLength(7),
                 Validators.maxLength(32)
             ]],
             email: ['', [

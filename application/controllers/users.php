@@ -34,14 +34,15 @@ class Users extends REST_Controller
 
     public function index_post()
     {
-        $user     = $this->input->post('user');
-        $password = md5($this->input->post('password'));
-        $email    = $this->input->post('email');
-        $name     = $this->input->post('name');
-        $credit   = $this->input->post('credit');
+        $user       = $this->input->post('user');
+        $password   = md5($this->input->post('password'));
+        $email      = $this->input->post('email');
+        $name       = $this->input->post('name');
+        $credit     = $this->input->post('credit');
+        $auth_token = md5($user . $this->input->post('password'));
 
-        if ($user != null && $password != null && $email != null && $name != null/*&& $credit != null*/) {
-            $result = $this->users_model->save($user, $password, $email, $name, $credit);
+        if ($user != null && $password != null && $email != null && $name != null && $auth_token != null) {
+            $result = $this->users_model->save($user, $password, $email, $name, $credit, $auth_token);
             if ($result == true) {
                 $this->response(array("success" => true));
             } else {
@@ -133,5 +134,8 @@ class Users extends REST_Controller
     {
         $email = $this->input->post('user_email');
 
+        if (!$email) {
+            $this->response(null, 400);
+        }
     }
 }

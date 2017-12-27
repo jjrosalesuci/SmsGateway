@@ -5,6 +5,7 @@ import { HomePageComponent } from "../page-home/page-home";
 import { LoginPageComponent } from "../page-login/page-login";
 import { RegisterPageComponent } from "../page-register/page-register";
 import { NotFoundComponent } from "../not-found/not-found.component";
+import { NotPermission } from "../not-found/not-permission.component";
 
 const appRoute: Routes = [
     {   
@@ -26,6 +27,10 @@ const appRoute: Routes = [
 	{ 
 		path      : 'not-found',
 		component : NotFoundComponent
+	},
+	{ 
+		path      : 'not-permission',
+		component : NotPermission
 	},
 	{ 
 		path      : '**',
