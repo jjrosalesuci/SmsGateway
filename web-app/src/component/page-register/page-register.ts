@@ -59,7 +59,6 @@ export class RegisterPageComponent {
             if (res) {
                 this._router.navigate(['/login']);
             } else {
-                console.log(res);
                 this.form.reset;
                 this._router.navigate(['/register']);
             }

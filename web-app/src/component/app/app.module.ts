@@ -15,6 +15,7 @@ import { CollapseDirective } from 'ngx-bootstrap';
 import { AuthGuard } from '../../services/auth-guard.service';
 import { loginService } from '../../services/login.service';
 import { NotPermission } from '../not-found/not-permission.component';
+import { PassRecoveryComponent } from "../pass-recovery/pass-recovery.component";
 
 
 
@@ -34,7 +35,8 @@ import { NotPermission } from '../not-found/not-permission.component';
                     NavigationComponent,
                     NotFoundComponent,
                     CollapseDirective,
-                    NotPermission
+                    NotPermission,
+                    PassRecoveryComponent
     ],
     bootstrap: [ AppComponent ],
     providers: [ AuthGuard, loginService ]

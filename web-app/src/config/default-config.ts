@@ -4,8 +4,9 @@ export default class Config {
     }
     endPoints(endpoint){
         var list = {
-            login : 'http://www.mylocal.com/SmsGateway/index.php/login',
-            register:'http://www.mylocal.com/SmsGateway/index.php/users'
+            login : 'http://localhost/SmsGateway/index.php/login',
+            register:'http://localhost/SmsGateway/index.php/users',
+            passRecovery:'http://localhost/SmsGateway/index.php/users/passrecovery'
         }
         return list[endpoint];
     }

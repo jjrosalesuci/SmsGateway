@@ -133,4 +133,15 @@ class Users_model extends CI_Model
         }
         return null;
     }
+
+    public function emailExist($email)
+    {
+        $this->db->select('*')->from('users')->where(['email' => $email]);
+        $query = $this->db->get();
+
+        if ($query->num_rows() > 0) {
+            return $query->row('id');
+        }
+        return false;
+    }
 }

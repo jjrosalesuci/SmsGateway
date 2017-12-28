@@ -3,27 +3,26 @@ import { Http, Headers } from '@angular/http';
 import Config from '../config/default-config';
 
 @Injectable()
-export class loginService {
-  isLoggedin: boolean;
+export class passrecoveryService {
+  sended: boolean;
   config: Config;
 
   constructor(private _http: Http) {
     this.config = new Config();
   }
 
-  loginfn(usercreds) {
-    this.isLoggedin = false;
+  recovery(email) {
+    this.sended = false;
     var headers = new Headers();
-    var creds = 'username=' + usercreds.username + '&password=' + usercreds.password;
+    var mail = 'email=' + email;
 
     headers.append('Content-Type', 'application/X-www-form-urlencoded');
 
     return new Promise((resolve) => {
-      this._http.post(this.config.endPoints('login'), creds, { headers: headers }).subscribe((data) => {
+      this._http.post(this.config.endPoints('passRecovery'), mail, { headers: headers }).subscribe((data) => {
         if (data.json().success) {
-          window.localStorage.setItem('auth_key', data.json().token);
-          this.isLoggedin = true;
-          resolve(this.isLoggedin)
+          this.sended = true;
+          resolve(this.sended)
         }else{
           resolve(data.json())
         }
