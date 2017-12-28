@@ -9,28 +9,28 @@
 </ol>
 <div class="row">
     <div class="col-xl-6 col-sm-6 mb-3">
-        <div class="card text-white bg-dark mb-3">
+        <div class="card text-white bg-secondary mb-3">
             <div class="card-header bg-transparent ">
                 <span class="fa fa-fw fa-info-circle"></span>
                 Información del Proyecto</div>
             <div class="card-body text-white">
-                <p class="card-text">ACCOUNT SID: kamsmdfkdmKKASDE2343RFF3d3e33e33ddddfg</p>
-                <p class="card-text">AUTH TOKEN:
-                    <span class="fa fa-fw fa-eye"></span> *************************************</p>
+                <show-hide-password size="sm" icon="fa fa-key">
+                    <span class="card-text">AUTH TOKEN:</span><input readonly type="password" value="aaasfafdagfdagdagad">
+                </show-hide-password>
                 <p class="card-text">BALANCE:
                     <span class="card-text text-warning">+ $15.50</span>
                 </p>
             </div>
             <div class="card-footer bg-transparent">
                 <span class="fa fa-fw fa-cog"></span>
-                <a href="" style="color:white;text-decoration:underline">Configuración</a>
+                <a style="color:white;text-decoration:underline">Configuración</a>
                 <span class="fa fa-fw fa-dollar" style="margin-left:20px"></span>
-                <a href="" style="color:white;text-decoration:underline">Detalles de pago</a>
+                <a routerLink='/admin/pagos' style="color:white;text-decoration:underline">Detalles de pago</a>
             </div>
         </div>
     </div>
     <div class="col-xl-6 col-sm-6 mb-3">
-        <div class="card text-white bg-danger mb-3">
+        <div class="card text-white bg-secondary mb-3">
             <div class="card-header bg-transparent ">
                 <span class="fa fa-fw fa-bug"></span>
                 Errores y Advertencias</div>
@@ -42,40 +42,8 @@
             </div>
         </div>
     </div>
-    <div class="col-xl-4 col-sm-4 mb-3">
-        <div class="card text-white bg-info mb-3">
-            <div class="card-header bg-transparent ">
-                <span class="fa fa-fw fa-hashtag"></span>
-                Números de Teléfonos</div>
-            <div class="card-body bg-white text-white">
-                <a href="" style="text-decoration:underline">
-                    Gestionar Números
-                </a>
-                <hr>
-                <a href="" style="text-decoration:underline">
-                    Comprar Número
-                </a>
-                <hr>
-                <a href="" style="text-decoration:underline">
-                    Verificar ID de LLamantes
-                </a>
-                <hr>
-                <a href="" style="text-decoration:underline">
-                    LLamadas Puertos
-                </a>
-                <hr>
-                <a href="" style="text-decoration:underline">
-                    Direcciones
-                </a>
-            </div>
-            <div class="card-footer bg-transparent">
-                <span class="fa fa-fw fa-hashtag"></span>
-                <a href="" style="color:white;text-decoration:underline">Números de Teléfonos</a>
-            </div>
-        </div>
-    </div>
     <div class="col-xl-8 col-sm-8 mb-4">
-        <div class="card text-white bg-primary mb-3">
+        <div class="card text-white bg-secondary mb-3">
             <div class="card-header bg-transparent ">
                 <span class="fa fa-fw fa-weixin"></span>
                 SMS Programables</div>

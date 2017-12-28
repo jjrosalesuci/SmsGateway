@@ -7,12 +7,14 @@ import { SmsComponent } from './sms/page-sms.component';
 import { SmsDetailsComponent } from '../page-admin/sms/page-smsdetails.component';
 import { SmsHomeComponent } from '../page-admin/sms/sms.home.component';
 import { PaymentsComponent } from '../page-admin/payments/payments.component';
+import { ShowHidePasswordModule } from 'ngx-show-hide-password';
 
 
 @NgModule({
     imports:[
         CommonModule,
-        adminRouting
+        adminRouting,
+        ShowHidePasswordModule.forRoot()
     ],
     declarations:[
         AdminPageComponent,
