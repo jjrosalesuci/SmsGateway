@@ -1,27 +1,26 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AdminPageComponent } from './page-admin';
-import { AdminHomeComponent } from '../page-admin/page-adminhome.component';
+import { AdminHomeModule } from '../page-admin/page-adminhome/page-adminhome.module';
 import { adminRouting } from '../page-admin/page-admin.routing'
 import { SmsComponent } from './sms/page-sms.component';
 import { SmsDetailsComponent } from '../page-admin/sms/page-smsdetails.component';
 import { SmsHomeComponent } from '../page-admin/sms/sms.home.component';
 import { PaymentsComponent } from '../page-admin/payments/payments.component';
-import { ShowHidePasswordModule } from 'ngx-show-hide-password';
+
 
 
 @NgModule({
     imports:[
         CommonModule,
         adminRouting,
-        ShowHidePasswordModule.forRoot()
+        AdminHomeModule,
     ],
     declarations:[
         AdminPageComponent,
         SmsComponent,
         SmsDetailsComponent,
         SmsHomeComponent,
-        AdminHomeComponent,
         PaymentsComponent
     ]
 })

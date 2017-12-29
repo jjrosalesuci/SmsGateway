@@ -116,13 +116,13 @@ class Users extends REST_Controller
 
     public function getCredit_post()
     {
-        $user_id = $this->input->post('user_id');
+        $user_key = $this->input->post('user_key');
 
-        if (!$user_id) {
+        if (!$user_key) {
             $this->response(null, 400);
         }
 
-        $credit = $this->users_model->getCredit($user_id);
+        $credit = $this->users_model->getCredit($user_key);
 
         if ($credit != null) {
             $this->response(array("success" => true, "credit" => $credit));

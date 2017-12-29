@@ -1,0 +1,19 @@
+<div class="card text-white bg-secondary mb-3">
+    <div class="card-header bg-transparent ">
+        <span class="fa fa-fw fa-info-circle"></span>
+        Información del Proyecto</div>
+    <div class="card-body text-white">
+        <show-hide-password size="sm" icon="fa fa-key">
+            <span class="card-text">AUTH TOKEN:</span>
+            <input class="form-control rounded" style="margin-left: 10px" readonly type="password" value='{{auth_token}}'>
+        </show-hide-password>
+        <br>
+        <p class="card-text">BALANCE:
+            <span class="card-text text-warning">+ ${{credit}}</span>
+        </p>
+    </div>
+    <div class="card-footer bg-transparent">
+        <span class="fa fa-fw fa-dollar"></span>
+        <a routerLink='/admin/pagos' style="color:white;text-decoration:underline">Detalles de pago</a>
+    </div>
+</div>

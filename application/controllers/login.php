@@ -21,8 +21,9 @@ class Login extends REST_Controller
 
         if (!is_null($user) && !is_null($pass)) {
             $result = $this->users_model->validatePass($user, $pass);
-            if ($result) {
-                $this->response(array("success" => true, "token" => "klkkkaskdmnmndAAADDMNMNMDmdsmdmskskiwwASSdsDsdFpOopuiUmmjiLL"), 200);
+            if ($result != null) {
+                $array = explode(':', $result);
+                $this->response(array("success" => true, "token" => $array[0], "credit" => $array[1]), 200);
             } else {
                 $this->response(array("error" => "Invalid credentials"), 400);
             }

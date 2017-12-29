@@ -14,7 +14,7 @@ export class passrecoveryService {
   recovery(email) {
     this.sended = false;
     var headers = new Headers();
-    var mail = 'email=' + email;
+    var mail = 'email=' + email + '&X-API-KEY=' + this.config.endPoints('authkey');
 
     headers.append('Content-Type', 'application/X-www-form-urlencoded');
 

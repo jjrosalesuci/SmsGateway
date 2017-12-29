@@ -14,7 +14,7 @@ export class registerService {
     registerfn(model) {
         this.wasRegistered = false;
         var headers = new Headers();
-        var user_model = 'user=' + model.username + '&password=' + model.password + '&email=' + model.email + '&name=' + model.name;
+        var user_model = 'user=' + model.username + '&password=' + model.password + '&email=' + model.email + '&name=' + model.name + '&X-API-KEY=' + this.config.endPoints('authkey');
 
         headers.append('Content-Type', 'application/X-www-form-urlencoded');
 

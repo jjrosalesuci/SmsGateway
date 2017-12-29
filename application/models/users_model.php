@@ -29,7 +29,7 @@ class Users_model extends CI_Model
         }
 
         $this->db->set('user', $user);
-        $this->db->set('auth_token', $auth_token);
+
         $this->db->set('password', $password);
         $this->db->set('email', $email);
         $this->db->set('name', $name);
@@ -38,7 +38,13 @@ class Users_model extends CI_Model
         $this->db->insert('users');
 
         if ($this->db->affected_rows() === 1) {
-            return true;
+            $this->db->set('key', $auth_token);
+            $this->db->set('user_id', $this->db->insert_id());
+            $this->db->insert('keys');
+            if ($this->db->affected_rows() === 1) {
+                return true;
+            }
+            return false;
         }
         return null;
     }
@@ -71,10 +77,18 @@ class Users_model extends CI_Model
         return null;
     }
 
-    public function getCredit($id)
+    public function getCredit($user_key)
     {
 
-        $query  = $this->db->select("credit")->from('users')->where('id', $id)->get();
+        //$query  = $this->db->select("credit")->from('users')->where('id', $id)->get();
+        //$credit = $query->row('credit');
+
+        $this->db->select('credit');
+        $this->db->from('users');
+        $this->db->join('keys', 'keys.user_id = users.id');
+        $this->db->where('key', $user_key);
+        $query = $this->db->get();
+
         $credit = $query->row('credit');
 
         if ($query->num_rows() > 0) {
@@ -108,14 +122,20 @@ class Users_model extends CI_Model
 
     public function validatePass($user, $pass)
     {
+        $this->db->select('password, active, credit, key');
+        $this->db->from('users');
+        $this->db->join('keys', 'keys.user_id = users.id');
+        $this->db->where('user', $user);
+        $query = $this->db->get();
 
-        $query     = $this->db->select('password, active')->from('users')->where('user', $user)->get();
+        $key       = $query->row('key');
         $password  = $query->row('password');
         $is_active = $query->row('active');
+        $credit    = $query->row('credit');
 
         if ($query->num_rows() > 0) {
             if ($password === $pass && $is_active != 0) {
-                return true;
+                return $key . ':' . $credit;
             }
             return null;
         }

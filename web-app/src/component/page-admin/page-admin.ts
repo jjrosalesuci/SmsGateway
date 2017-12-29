@@ -13,7 +13,7 @@ export class AdminPageComponent {
 
     logout() {
         window.localStorage.removeItem('auth_key');
-        window.location.replace('/');
+        window.location.replace('/login');
     }
 
     toggleCollapse() {

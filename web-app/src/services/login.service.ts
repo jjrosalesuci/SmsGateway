@@ -14,7 +14,7 @@ export class loginService {
   loginfn(usercreds) {
     this.isLoggedin = false;
     var headers = new Headers();
-    var creds = 'username=' + usercreds.username + '&password=' + usercreds.password;
+    var creds = 'username=' + usercreds.username + '&password=' + usercreds.password + '&X-API-KEY=' + this.config.endPoints('authkey');
 
     headers.append('Content-Type', 'application/X-www-form-urlencoded');
 
@@ -22,6 +22,7 @@ export class loginService {
       this._http.post(this.config.endPoints('login'), creds, { headers: headers }).subscribe((data) => {
         if (data.json().success) {
           window.localStorage.setItem('auth_key', data.json().token);
+          window.localStorage.setItem('credit', data.json().credit);
           this.isLoggedin = true;
           resolve(this.isLoggedin)
         }else{

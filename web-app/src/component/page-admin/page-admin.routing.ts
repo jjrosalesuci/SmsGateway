@@ -1,7 +1,7 @@
 import { ModuleWithProviders } from "@angular/core";
 import { Routes, RouterModule } from '@angular/router';
 import { AdminPageComponent } from './page-admin';
-import { AdminHomeComponent } from './page-adminhome.component';
+import { AdminHomeComponent } from './page-adminhome/page-adminhome.component';
 import { SmsComponent } from './sms/page-sms.component';
 import { SmsDetailsComponent } from './sms/page-smsdetails.component';
 import { SmsHomeComponent } from './sms/sms.home.component';
