@@ -5,11 +5,14 @@ import { ProjectInfoComponent } from './project-info/project-info.component';
 import { AdminHomeComponent } from './page-adminhome.component';
 import { ErrorsComponent } from './errors/errors.component';
 import { ChartComponent } from './chart/chart.component';
+import { SmsCharthomeService } from '../../../services/sms-charthome.service';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
     imports: [
         CommonModule,
+        HttpClientModule,
         ShowHidePasswordModule.forRoot()
     ],
     declarations: [
@@ -17,7 +20,8 @@ import { ChartComponent } from './chart/chart.component';
         ProjectInfoComponent,
         ErrorsComponent,
         ChartComponent
-    ]
+    ],
+    providers:[SmsCharthomeService]
 
 })
 export class AdminHomeModule { }

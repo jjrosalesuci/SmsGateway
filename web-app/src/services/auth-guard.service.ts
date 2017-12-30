@@ -14,11 +14,11 @@ export class AuthGuard implements CanActivate {
     }
 
     canActivate() {
-        this.isLoggedIn = this.loginServ.isLoggedin;
         if(this.loginServ.isLogged()){
             return true;    
+        }else{
+            this._router.navigate(['/not-permission']);
+            return false;
         }
-        this._router.navigate(['/not-permission']);
-        return false;
     }
 }

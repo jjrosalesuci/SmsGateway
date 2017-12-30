@@ -1,13 +1,13 @@
-<div class="card text-white bg-secondary mb-3">
-    <div class="card-header bg-transparent ">
+<div class="card text-white mb-3">
+    <div class="card-header bg-secondary ">
         <span class="fa fa-fw fa-weixin"></span>
         SMS Programables</div>
     <div class="card-body bg-transparent">
-        <div class="jumbotron" style="background-image:url('../assets/chart.png'); min-height: 275px; background-position: left;
-            background-size: cover;">
+        <div *ngIf="chart">
+            <canvas id='smschart'>{{ chart }}</canvas>
         </div>
     </div>
-    <div class="card-footer bg-transparent">
+    <div class="card-footer bg-secondary">
         <span class="fa fa-fw fa-weixin"></span>
         <a routerLink="/admin/sms" style="color:white;text-decoration:underline">SMS Programables</a>
         <span class="fa fa-fw fa-history" style="margin-left:20px"></span>

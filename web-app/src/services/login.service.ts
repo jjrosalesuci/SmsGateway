@@ -26,7 +26,8 @@ export class loginService {
           this.isLoggedin = true;
           resolve(this.isLoggedin)
         }else{
-          resolve(data.json())
+          this.isLoggedin = false;
+          resolve(this.isLoggedin)
         }
       })
     })

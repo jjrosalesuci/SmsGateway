@@ -39,7 +39,7 @@ class Users_model extends CI_Model
 
         if ($this->db->affected_rows() === 1) {
             $this->db->set('key', $auth_token);
-            $this->db->set('user_id', $this->db->insert_id());
+            $this->db->set('id_user', $this->db->insert_id());
             $this->db->insert('keys');
             if ($this->db->affected_rows() === 1) {
                 return true;
@@ -79,13 +79,9 @@ class Users_model extends CI_Model
 
     public function getCredit($user_key)
     {
-
-        //$query  = $this->db->select("credit")->from('users')->where('id', $id)->get();
-        //$credit = $query->row('credit');
-
         $this->db->select('credit');
         $this->db->from('users');
-        $this->db->join('keys', 'keys.user_id = users.id');
+        $this->db->join('keys', 'keys.id_user = users.id');
         $this->db->where('key', $user_key);
         $query = $this->db->get();
 
@@ -97,18 +93,18 @@ class Users_model extends CI_Model
         return null;
     }
 
-    public function discountCredit($id, $cost, $sms_id)
+    public function discountCredit($user_id, $credit, $cost, $sms_id)
     {
         date_default_timezone_set('America/Havana'); # add your city to set local time zone
-        $now    = date('Y-m-d H:i:s');
-        $credit = $this->getCredit($id) - $cost;
-        $this->db->set('credit', $credit, false);
-        $this->db->where('id', $id);
+        $now       = date('Y-m-d H:i:s');
+        $newcredit = $credit - $cost;
+        $this->db->set('credit', $newcredit, false);
+        $this->db->where('id', $user_id);
         $this->db->update('users');
 
         if ($this->db->affected_rows() === 1) {
             //Log del costo del mensaje
-            $this->db->set('user_id', $id);
+            $this->db->set('id_user', $user_id);
             $this->db->set('date', $now);
             $this->db->set('spended', $cost);
             $this->db->set('sms_id', $sms_id);
@@ -120,22 +116,37 @@ class Users_model extends CI_Model
         return null;
     }
 
+    public function findUserid($api_key)
+    {
+        $this->db->select('users.id');
+        $this->db->from('users');
+        $this->db->join('keys', 'keys.id_user = users.id');
+        $this->db->where('key', $api_key);
+        $query = $this->db->get();
+
+        $id = $query->row('id');
+
+        if ($query->num_rows() > 0) {
+            return $id;
+        }
+        return null;
+    }
+
     public function validatePass($user, $pass)
     {
-        $this->db->select('password, active, credit, key');
+        $this->db->select('password, active, key');
         $this->db->from('users');
-        $this->db->join('keys', 'keys.user_id = users.id');
+        $this->db->join('keys', 'keys.id_user = users.id');
         $this->db->where('user', $user);
         $query = $this->db->get();
 
         $key       = $query->row('key');
         $password  = $query->row('password');
         $is_active = $query->row('active');
-        $credit    = $query->row('credit');
 
         if ($query->num_rows() > 0) {
             if ($password === $pass && $is_active != 0) {
-                return $key . ':' . $credit;
+                return $key;
             }
             return null;
         }
@@ -145,7 +156,7 @@ class Users_model extends CI_Model
     public function spendMonth($user_id, $month)
     {
         //$this->db->select('(SELECT SUM(payments.amount) FROM payments WHERE payments.invoice_id=4) AS amount_paid', false);
-        $this->db->select('(SELECT sum(spended.spended) FROM spended WHERE spended.user_id = ' . $user_id . ' and month(date) = ' . $month . ') as month_spended', false);
+        $this->db->select('(SELECT sum(spended.spended) FROM spended WHERE spended.id_user = ' . $user_id . ' and month(date) = ' . $month . ') as month_spended', false);
         $query = $this->db->get();
 
         if ($query->num_rows() > 0) {

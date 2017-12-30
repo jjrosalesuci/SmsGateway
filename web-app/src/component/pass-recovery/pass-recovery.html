@@ -16,7 +16,7 @@
                                         <span class="input-group-addon">
                                             <i class="fa fa-send"></i>
                                         </span>
-                                        <input type="email" name="email" class="form-control" placeholder="Correo" formControlName="email" />
+                                        <input type="email" name="email" class="form-control" placeholder="Correo" formControlName="email" [ngClass]="{'is-invalid': (form.controls.email.errors && form.controls.email.dirty), 'is-valid': (!form.controls.email.errors) }"/>
                                     </div>
                                     <div>
                                         <ul class="help-block text-left text-danger">

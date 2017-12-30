@@ -119,13 +119,13 @@ class Users extends REST_Controller
         $user_key = $this->input->post('user_key');
 
         if (!$user_key) {
-            $this->response(null, 400);
+            $this->response(array("error" => "Falta un parametro."), 400);
         }
 
         $credit = $this->users_model->getCredit($user_key);
 
         if ($credit != null) {
-            $this->response(array("success" => true, "credit" => $credit));
+            $this->response(array("success" => true, "credit" => $credit), 200);
         } else {
             $this->response(array("error" => "El usuario no existe"), 400);
         }

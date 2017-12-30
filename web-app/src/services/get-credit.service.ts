@@ -18,13 +18,18 @@ export class GetCreditService {
         headers.append('Content-Type', 'application/X-www-form-urlencoded');
 
         return new Promise((resolve) => {
-            this._http.post(this.config.endPoints('getCredit'), user_authkey, { headers: headers }).subscribe((data) => {
-                if (data.json().success) {
-                    this.credit = data.json().credit;
+            this._http.post(this.config.endPoints('getCredit'), user_authkey, { headers: headers }).subscribe(
+                (data) => {
+                    if (data.json().success) {
+                        this.credit = data.json().credit;
+                        resolve(this.credit)
+                    }
+                },
+                (err) => {
+                    this.credit = err.json().error;
                     resolve(this.credit)
-                } else {
                 }
-            })
+            )
         })
     }
 
